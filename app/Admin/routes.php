@@ -13,4 +13,6 @@ Route::group([
     $router->post('upload/image', 'UploadsController@store');
     $router->get('users', 'UsersController@index');
     $router->get('users/create', 'UsersController@create');
+
+    $router->get('appointments', 'AppointmentsController@index');
 });

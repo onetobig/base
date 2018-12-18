@@ -10,6 +10,13 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const GENDER_MALE = 0;
+    const GENDER_FEMALE = 1;
+    public static $genderMap = [
+        self::GENDER_MALE => '男',
+        self::GENDER_FEMALE => '女',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
