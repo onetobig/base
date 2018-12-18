@@ -19,7 +19,7 @@ class CreateAppointmentsTable extends Migration
             $table->unsignedInteger('age');
             $table->string('phone');
             $table->dateTime('meet_date');
-            $table->tinyInteger('gender');
+            $table->tinyInteger('gender')->default(2);
             $table->string('degree');
             $table->timestamps();
         });

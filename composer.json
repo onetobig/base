@@ -15,7 +15,9 @@
         "intervention/image": "^2.4",
         "laravel-admin-ext/summernote": "^1.0",
         "laravel/framework": "5.7.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "liyu/dingo-serializer-switch": "^0.3.0",
+        "overtrue/laravel-lang": "~3.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
