@@ -82,6 +82,11 @@ class AppointmentsController extends Controller
     {
         $grid = new Grid(new Appointment);
         $grid->exporter(new AppointmentExcelExpoter());
+        $grid->filter(function ($filter) {
+            $filter->like('name', '姓名');
+            $filter->between('meet_date', '预约时间')->datetime();
+            $filter->equal('gender', '性别')->select(Appointment::$genderMap);
+        });
         $grid->id('Id');
         $grid->name('姓名');
         $grid->age('年龄');
