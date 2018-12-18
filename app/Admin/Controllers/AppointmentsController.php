@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Extensions\AppointmentExcelExpoter;
 use App\Models\Appointment;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -80,14 +81,14 @@ class AppointmentsController extends Controller
     protected function grid()
     {
         $grid = new Grid(new Appointment);
-
+        $grid->exporter(new AppointmentExcelExpoter());
         $grid->id('Id');
         $grid->name('姓名');
         $grid->age('年龄');
         $grid->phone('手机');
         $grid->meet_date('预约时间');
         $grid->gender('性别')->display(function ($value) {
-            return User::$genderMap[$value] ?? "未知";
+            return Appointment::$genderMap[$value] ?? "未知";
         });
         $grid->degree('学员程度');
         $grid->disableCreateButton();
