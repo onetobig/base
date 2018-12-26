@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\User;
+use App\Models\Teachers;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -10,7 +10,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
-class UsersController extends Controller
+class TeachersController extends Controller
 {
     use HasResourceActions;
 
@@ -23,7 +23,7 @@ class UsersController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('用户列表')
+            ->header('教师列表')
             ->body($this->grid());
     }
 
@@ -38,7 +38,6 @@ class UsersController extends Controller
     {
         return $content
             ->header('Detail')
-            ->description('description')
             ->body($this->detail($id));
     }
 
@@ -78,17 +77,24 @@ class UsersController extends Controller
      */
     protected function grid()
     {
-        $grid = new Grid(new User);
+        $grid = new Grid(new Teachers);
 
         $grid->id('Id');
-        $grid->name('Name');
-        $grid->email('Email');
-        $grid->email_verified_at('Email verified at');
-        $grid->password('Password');
-        $grid->remember_token('Remember token');
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+        $grid->name('姓名');
+        $grid->avatar('头像')->image();
+        $grid->introduce('简介')->display(function ($value) {
+            return make_excerpt($value, 50);
+        });
+        $grid->created_at('创建时间');
 
+        $grid->actions(function ($actions) {
+            $actions->disableView();
+        });
+
+        return $grid;
+    }
+
+    /**
         return $grid;
     }
 
@@ -100,14 +106,12 @@ class UsersController extends Controller
      */
     protected function detail($id)
     {
-        $show = new Show(User::findOrFail($id));
+        $show = new Show(Teachers::findOrFail($id));
 
         $show->id('Id');
         $show->name('Name');
-        $show->email('Email');
-        $show->email_verified_at('Email verified at');
-        $show->password('Password');
-        $show->remember_token('Remember token');
+        $show->avatar('Avatar');
+        $show->introduce('Introduce');
         $show->created_at('Created at');
         $show->updated_at('Updated at');
 
@@ -121,13 +125,11 @@ class UsersController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new User);
+        $form = new Form(new Teachers);
 
-        $form->text('name', 'Name');
-        $form->email('email', 'Email');
-        $form->datetime('email_verified_at', 'Email verified at')->default(date('Y-m-d H:i:s'));
-        $form->password('password', 'Password');
-        $form->notes('remember_token', 'Remember token');
+        $form->text('name', '名称');
+        $form->image('avatar', '头像');
+        $form->textarea('introduce', '简介');
 
         return $form;
     }

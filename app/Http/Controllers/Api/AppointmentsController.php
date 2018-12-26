@@ -11,15 +11,16 @@ class AppointmentsController extends Controller
 {
     public function store(AppointmentRequest $request)
     {
-        $appointment = Appointment::query()->create($request->only([
+        $data = $request->only([
             'name',
             'age',
             'phone',
             'meet_date',
-            'degree',
+            'hobbies',
             'gender',
-        ]));
-
+            'courses',
+        ]);
+        $appointment = Appointment::query()->create($data);
 
         return $this->response->array($appointment->toArray())->setStatusCode(201);
     }

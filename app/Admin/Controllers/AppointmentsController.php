@@ -6,11 +6,13 @@ use App\Admin\Extensions\AppointmentExcelExpoter;
 use App\Models\Appointment;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Carbon\Carbon;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Support\Facades\Request;
 
 class AppointmentsController extends Controller
 {
@@ -82,20 +84,31 @@ class AppointmentsController extends Controller
     {
         $grid = new Grid(new Appointment);
         $grid->exporter(new AppointmentExcelExpoter());
+        $date = Request::get('created_at');
+        if (!is_array($date)) {
+            $date = date('Y-m-d', (time() - ((date('w') == 0 ? 7 : date('w')) - 1) * 24 * 3600));
+            $grid->model()->where('created_at', '>=', $date);
+        }
         $grid->filter(function ($filter) {
             $filter->like('name', '姓名');
-            $filter->between('meet_date', '预约时间')->datetime();
+            $filter->between('created_at', '提交时间')->datetime(['format' => 'YYYY-MM-DD']);
             $filter->equal('gender', '性别')->select(Appointment::$genderMap);
         });
         $grid->id('Id');
         $grid->name('姓名');
         $grid->age('年龄');
         $grid->phone('手机');
-        $grid->meet_date('预约时间');
+        $grid->meet_date('体验时间');
         $grid->gender('性别')->display(function ($value) {
             return Appointment::$genderMap[$value] ?? "未知";
         });
-        $grid->degree('学员程度');
+        $grid->hobbies('兴趣及爱好')->display(function ($value) {
+            return implode(', ', $value);
+        });
+        $grid->courses('试课班别')->display(function ($value) {
+            return implode(', ', $value);
+        });
+        $grid->created_at('提交时间');
         $grid->disableCreateButton();
         $grid->actions(function ($actions) {
             $actions->disableDelete();

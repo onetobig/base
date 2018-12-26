@@ -13,11 +13,24 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    $.ajax({
+        method: "POST",
+        url: "http://edu.demo/api/appointments",
+        data: {
+            name: "阮雨",
+            age: 5,
+            phone: 13055246008,
+            meet_date: "本周六下午三点",
+            hobbies: ["唱歌", "跳舞"],
+            gender: 0,
+        }
+    });
+</script>
 @endsection

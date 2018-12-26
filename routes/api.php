@@ -16,7 +16,11 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => ['serializer:array', 'api.throttle'],
+    'middleware' => [
+        'serializer:array',
+        'api.throttle',
+        \Barryvdh\Cors\HandleCors::class,
+    ],
     'limit' => 60,
     'expires' => 1,
 ],function($api) {

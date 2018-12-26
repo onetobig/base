@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+	    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 
         <!-- Styles -->
         <style>

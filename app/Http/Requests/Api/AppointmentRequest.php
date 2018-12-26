@@ -11,9 +11,10 @@ class AppointmentRequest extends ApiRequest
             'name' => 'required|string',
             'age' => 'required|numeric',
             'phone' => ['required', 'regex:/^1\d{10}/'],
-            'meet_date' => ['required', 'date'],
-            'degree' => ['required', 'string'],
-            'gender' => 'numeric',
+            'meet_date' => "required|string",
+            'hobbies' => ['required', 'array'],
+            'gender' => 'numeric|required|in:0,1',
+            'courses' => ['required', 'array'],
         ];
     }
 
@@ -24,8 +25,18 @@ class AppointmentRequest extends ApiRequest
             'name' => '姓名',
             'age' => '年龄',
             'phone' => '手机',
-            'meet_date' => '预约时间',
-            'digit' => '学员程度',
+            'meet_date' => '试课时间',
+            'hobbies' => '爱好及特长',
+            'courses' => '试课班别',
+            'gender' => '性别',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'hobbies.required' => '请选择特长及爱好',
+            'courses' => '请选择试课班别',
         ];
     }
 }

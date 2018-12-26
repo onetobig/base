@@ -14,5 +14,10 @@ class Appointment extends Model
         self::GENDER_FEMALE => '女',
     ];
 
-    protected $fillable = ['name', 'age', 'phone', 'meet_date', 'degree', 'gender',];
+    protected $casts = [
+        'hobbies' => 'array',
+        'courses' => 'array',
+    ];
+
+    protected $fillable = ['name', 'age', 'phone', 'meet_date', 'hobbies', 'gender', 'courses', ];
 }
