@@ -25,5 +25,6 @@ $api->version('v1', [
     'expires' => 1,
 ],function($api) {
     $api->post('appointments', 'AppointmentsController@store');
+    $api->get('teachers', 'TeachersController@index');
 });
 

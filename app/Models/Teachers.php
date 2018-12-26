@@ -14,6 +14,6 @@ class Teachers extends Model
         if (Str::startsWith($this->attributes['avatar'], ['http://', 'https://'])) {
             return $this->attributes['avatar'];
         }
-        \Storage::disk('admin')->url($this->attributes['avatar']);
+        return \Storage::disk('admin')->url($this->attributes['avatar']);
     }
 }
