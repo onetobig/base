@@ -129,7 +129,7 @@ class TeachersController extends Controller
 
         $form->text('name', '名称');
         $form->image('avatar', '头像');
-        $form->textarea('introduce', '简介');
+        $form->notes('introduce', '简介');
 
         return $form;
     }
