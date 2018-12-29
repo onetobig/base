@@ -23,6 +23,8 @@ class AppointmentExcelExpoter extends AbstractExporter
                 $rows = collect($this->getData())->map(function ($item) {
                     $item = array_only($item, ['id', 'name', 'phone', 'meet_date', 'gender', 'hobbies', 'courses']);
                     $item['gender'] = Appointment::$genderMap[$item['gender']] ?? '未知';
+                    $item['hobbies'] = implode("，", $item['hobbies']);
+                    $item['courses'] = implode("，", $item['courses']);
                     return $item;
                 });
                 $rows = $rows->toArray();

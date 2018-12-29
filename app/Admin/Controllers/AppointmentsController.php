@@ -106,7 +106,7 @@ class AppointmentsController extends Controller
             return implode(', ', $value);
         });
         $grid->courses('试课班别')->display(function ($value) {
-            return implode(', ', $value);
+            return implode("<br>", $value);
         });
         $grid->created_at('提交时间');
         $grid->disableCreateButton();
