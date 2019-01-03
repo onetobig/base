@@ -21,7 +21,16 @@ class AppointmentExcelExpoter extends AbstractExporter
             $excel->sheet('Sheetname', function($sheet) {
                 // 这段逻辑是从表格数据中取出需要导出的字段
                 $rows = collect($this->getData())->map(function ($item) {
-                    $item = array_only($item, ['id', 'name', 'phone', 'created_at', 'meet_date', 'gender', 'hobbies', 'courses']);
+                    $item = [
+                        'id' => $item['id'],
+                        'name' => $item['name'],
+                        'phone' => $item['phone'],
+                        'created_at' => $item['created_at'],
+                        'meet_date' => $item['meet_date'],
+                        'gender' => $item['gender'],
+                        'hobbies' => $item['hobbies'],
+                        'courses' => $item['courses'],
+                    ];
                     $item['gender'] = Appointment::$genderMap[$item['gender']] ?? '未知';
                     $item['hobbies'] = implode("，", $item['hobbies']);
                     $item['courses'] = implode("，", $item['courses']);
