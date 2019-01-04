@@ -226,4 +226,7 @@ return [
 
     ],
 
+
+    // connect email
+    'connect_email' => env('CONNECT_EMAIL', null),
 ];

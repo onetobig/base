@@ -15,7 +15,7 @@ Route::group([
     $router->get('users/create', 'UsersController@create');
     $router->get('users', 'UsersController@index');
 
-    $router->get('appointments', 'AppointmentsController@index');
+    $router->get('appointments', 'AppointmentsController@index')->name("apppointments.index");
 
     $router->get('teachers', 'TeachersController@index');
     $router->get('teachers/create', 'TeachersController@create');
