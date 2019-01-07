@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Image;
+use App\Observers\ImageObserver;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Carbon 中文化设置
         \Carbon\Carbon::setLocale('zh');
+        Image::observe(ImageObserver::class);
     }
 
     /**

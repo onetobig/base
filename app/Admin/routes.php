@@ -15,6 +15,13 @@ Route::group([
     $router->get('users/create', 'UsersController@create');
     $router->get('users', 'UsersController@index');
 
+    $router->get('images', 'ImagesController@index');
+    $router->get('images/create', 'ImagesController@create');
+    $router->post('images', 'ImagesController@store');
+    $router->get('images/{id}/edit', 'ImagesController@edit');
+    $router->put('images/{id}', 'ImagesController@update');
+    $router->delete('images/{id}', 'ImagesController@destroy');
+
     $router->get('appointments', 'AppointmentsController@index')->name("apppointments.index");
 
     $router->get('teachers', 'TeachersController@index');

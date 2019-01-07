@@ -18,13 +18,23 @@ $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
     'middleware' => [
         'serializer:array',
-        'api.throttle',
         \Barryvdh\Cors\HandleCors::class,
     ],
-    'limit' => 60,
-    'expires' => 1,
-],function($api) {
-    $api->post('appointments', 'AppointmentsController@store');
-    $api->get('teachers', 'TeachersController@index');
+], function ($api) {
+    $api->group([
+        'middleware' => 'api.throttle',
+        'limit' => 500,
+        'expires' => 1,
+    ], function ($api) {
+        $api->get('images', 'ImagesController@index');
+    });
+
+    $api->group([
+        'middleware' => 'api.throttle',
+        'limit' => 60,
+        'expires' => 1,
+    ], function ($api) {
+        $api->post('appointments', 'AppointmentsController@store');
+    });
 });
 
