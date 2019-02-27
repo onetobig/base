@@ -57,9 +57,17 @@ return [
 
         'admin' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => public_path('public'),
+            'url' => env('APP_URL').'/public',
             'visibility' => 'public',
+        ],
+
+        'qiniu' => [
+            'driver'     => 'qiniu',
+            'access_key' => env('QINIU_ACCESS_KEY', 'iF0XuAM9iiLQB0FsRc4TJIp6OS6p-8OynnPx4NdT'),
+            'secret_key' => env('QINIU_SECRET_KEY', '3YhUhbt4zr05-E-2Jzls3RsjAJg4EXuIUaoV_N4B'),
+            'bucket'     => env('QINIU_BUCKET', 'onetobig'),
+            'domain'     => env('QINIU_DOMAIN', 'pkydo8zqd.bkt.clouddn.com'), // or host: https://xxxx.clouddn.com
         ],
 
         's3' => [
@@ -70,6 +78,17 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
+
+        'oss' => [
+            'driver' => 'oss',
+            'access_id' => env('OSS_ACCESS_KEY'),
+            'access_key' => env('OSS_SECRET_KEY'),
+            'endpoint' => env('OSS_ENDPOINT'),
+            'bucket' => env('OSS_BUCKET'),
+            'isCName' => env('OSS_IS_CNAME', false), // 如果 isCname 为 false，endpoint 应配置 oss 提供的域名如：`oss-cn-beijing.aliyuncs.com`，否则为自定义域名，，cname 或 cdn 请自行到阿里 oss 后台配置并绑定 bucket
+            'ssl' => false,
+            'debug' => false,
+        ]
 
     ],
 
