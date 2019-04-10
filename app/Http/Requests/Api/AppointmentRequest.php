@@ -9,12 +9,11 @@ class AppointmentRequest extends ApiRequest
     {
         return [
             'phone' => ['required', 'regex:/^1\d{10}/'],
-            'name' => 'required|string',
+            'name' => 'required',
             'gender' => 'numeric|required|in:0,1',
-            'age' => 'required|numeric',
-            'hobbies' => ['required', 'array'],
-            'meet_date' => "required|string",
-            'courses' => ['required', 'array'],
+            'birthday' => 'required|date',
+            'meet_date' => "required|array",
+            'address' => 'required',
         ];
     }
 
@@ -23,7 +22,7 @@ class AppointmentRequest extends ApiRequest
 
         return [
             'name' => '姓名',
-            'age' => '年龄',
+            'birthday' => '生日',
             'phone' => '手机',
             'meet_date' => '试课时间',
             'hobbies' => '爱好及特长',
@@ -36,11 +35,10 @@ class AppointmentRequest extends ApiRequest
     {
         return [
             'name.required' => '请填写孩子姓名',
-            'age.required' => '请选择孩子年龄',
+            'birthday.required' => '请选择孩子年龄',
             'phone.required' => '请填写手机号码',
             'meet_date.required' => '请选择试课时间',
-            'hobbies.required' => '请选择特长及爱好',
-            'courses.required' => '请选择试课班别',
+            'address.required' => '请填写家庭住址',
             'gender' => '请选择孩子性别',
         ];
     }

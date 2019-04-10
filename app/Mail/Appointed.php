@@ -26,7 +26,7 @@ class Appointed extends Mailable
     public function build()
     {
         return $this->from("14628789@qq.com")
-            ->subject($this->appointment->name . "预约" . $this->appointment->meet_date )
+            ->subject($this->appointment->name . "预约")
             ->with([
                 'url' => route('apppointments.index')
             ])

@@ -15,13 +15,12 @@ class CreateAppointmentsTable extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->unsignedInteger('age');
-            $table->string('phone');
-            $table->string('meet_date');
+            $table->string('name')->default('');
+            $table->string('birth_day')->default('');
+            $table->string('phone')->default('');
+            $table->string('meet_date')->default('');
+            $table->string('address')->default('');
             $table->tinyInteger('gender')->default(2);
-            $table->string('hobbies');
-            $table->string('courses');
             $table->timestamps();
         });
     }

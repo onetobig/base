@@ -15,9 +15,8 @@ class Appointment extends Model
     ];
 
     protected $casts = [
-        'hobbies' => 'array',
-        'courses' => 'array',
+        'meet_date' => 'array',
     ];
 
-    protected $fillable = ['name', 'age', 'phone', 'meet_date', 'hobbies', 'gender', 'courses', ];
+    protected $guarded = [];
 }

@@ -98,14 +98,11 @@ class AppointmentsController extends Controller
         $grid->name('姓名');
         $grid->age('年龄');
         $grid->phone('手机');
-        $grid->meet_date('体验时间');
+        $grid->address('家庭住址');
         $grid->gender('性别')->display(function ($value) {
             return Appointment::$genderMap[$value] ?? "未知";
         });
-        $grid->hobbies('兴趣及爱好')->display(function ($value) {
-            return implode(', ', $value);
-        });
-        $grid->courses('试课班别')->display(function ($value) {
+        $grid->meet_date('体验时间')->display(function ($value) {
             return implode("<br>", $value);
         });
         $grid->created_at('提交时间');

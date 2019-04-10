@@ -17,8 +17,8 @@ class AppointmentsController extends Controller
             'age',
             'phone',
             'meet_date',
-            'hobbies',
             'gender',
+            'address',
             'courses',
         ]);
         $appointment = Appointment::query()->create($data);
