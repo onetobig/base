@@ -3,7 +3,6 @@
 namespace App\Http;
 
 use App\Http\Middleware\ApiRequest;
-use App\Http\Middleware\BackendRequest;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -56,7 +55,6 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'api-request' => ApiRequest::class,
-        'backend-request' => BackendRequest::class,
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
 //        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,

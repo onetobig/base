@@ -11,7 +11,6 @@ return [
      * will automatically be registered.
      */
     'directories' => [
-        app_path('Http/Controllers/Backend'),
         app_path('Http/Controllers/Api'),
     ],
 

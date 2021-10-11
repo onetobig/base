@@ -23,21 +23,4 @@ class BaseModel extends Model
 
     protected $guarded = [];
 
-    /**
-     * 切换字段的 bool 值
-     * @param $column
-     * @param BackendUser|null $user
-     * @return $this
-     */
-    public function toggleColumn($column, ?BackendUser $user): BaseModel
-    {
-        $data = [
-            $column => !$this->$column,
-        ];
-        if (\Schema::hasColumn($this->getTable(), 'backend_user_id')) {
-            $data['backend_user_id'] = optional($user)->id ?? 0;
-        }
-        $this->update($data);
-        return $this;
-    }
 }

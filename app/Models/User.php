@@ -21,7 +21,6 @@ class User extends Authenticatable
 {
     use Visitor;
     use SoftDeletes;
-    use Liker;
     use Notifiable;
     use HasApiTokens;
     use HasFactory;
